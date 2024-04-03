@@ -22,6 +22,8 @@ import {
 
 import dailyExpenseRoutes from './routes/dailyExpense.routes.js'
 import profitRoutes from './routes/profit.routes.js'
+import RevenueRoutes from './routes/revenue.routes.js'
+import refworkRoutes from './routes/refwork.routes.js'
 
 configDotenv()
 
@@ -40,8 +42,10 @@ app.use('/invoices', invoiceRoutes)
 app.use('/expenses', expenseRoutes)
 app.use('/daily-expenses', dailyExpenseRoutes)
 app.use('/profit', profitRoutes)
+app.use('/revenue', RevenueRoutes)
+app.use('/refworks', refworkRoutes)
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
     console.log('server is running on port 3000')
 })
 

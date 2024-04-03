@@ -73,6 +73,8 @@ companyRoutes.post(
         { name: 'documents', maxCount: 7 },
     ]),
     fileErrorHandler,
+    checkHeader,
+    checkAdmin,
     createCompany,
 )
 

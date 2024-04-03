@@ -14,12 +14,9 @@ export const createCompany = async (req, res) => {
             })
         }
         try {
-            const existingCompany = await Company.findOne({
-                $or: [
-                    { username: req.body.username },
-                    { email: req.body.email },
-                ],
-            })
+            const existingCompany = await Company.find({
+                username: req.body.username,
+            }).exec()
 
             if (existingCompany) {
                 if (existingCompany.username === req.body.username) {
