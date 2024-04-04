@@ -13,6 +13,11 @@ export const getTodayExpenses = async (req, res) => {
                 ),
             },
         })
+            .sort({ timestamps: -1 })
+            .exec()
+            .catch((error) => {
+                console.log(error)
+            })
 
         if (expenses.length > 0) {
             return res.status(201).json({
@@ -38,7 +43,11 @@ export const getMonthlyExpenses = async (req, res) => {
                 $gte: new Date(new Date().getFullYear(), new Date().getMonth()),
             },
         })
-
+            .sort({ timestamps: -1 })
+            .exec()
+            .catch((error) => {
+                console.log(error)
+            })
         return res.status(201).json({
             success: true,
             data: expenses,

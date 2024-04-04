@@ -20,7 +20,6 @@ const invoiceEmployeeSchema = new mongoose.Schema(
                 'in process',
                 'approved',
                 'return for modification',
-                'return for modification',
                 'rejected',
                 'completed',
             ],

@@ -2,19 +2,6 @@ import cron from 'node-cron'
 import Profit from '../models/profit.model.js'
 import Invoice from '../models/invoice.model.js'
 import Service from '../models/service.model.js'
-import { configDotenv } from 'dotenv'
-import mongoose from 'mongoose'
-
-configDotenv()
-
-const connectDatabase = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_URL)
-        console.log('Connected to MongoDB')
-    } catch (error) {
-        console.error('Error connecting to MongoDB', error)
-    }
-}
 
 const calculateProfit = async () => {
     try {
@@ -66,11 +53,9 @@ export const scheduleLastDayOfMonthJob = () => {
             const tomorrow = new Date(today)
             tomorrow.setDate(tomorrow.getDate() + 1)
 
-            await connectDatabase()
             await calculateProfit()
 
             if (today.getMonth() !== tomorrow.getMonth()) {
-                await connectDatabase()
                 await calculateProfit()
                 console.log('Profit Calculated')
             }
