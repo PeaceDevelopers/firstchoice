@@ -26,7 +26,7 @@ const companySchema = Joi.object({
         'string.max': 'Phone must be at most 60 characters long',
         'any.required': 'Phone is required',
     }),
-    role: Joi.string().valid('admin', 'company').required().messages({
+    role: Joi.string().valid('ceo', 'admin', 'company').required().messages({
         'any.required': 'Role is required',
         'any.only': 'Invalid role',
     }),

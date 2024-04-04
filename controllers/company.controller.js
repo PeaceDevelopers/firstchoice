@@ -7,7 +7,7 @@ import companySchema from '../validations/company.schema.js'
 export const createCompany = async (req, res) => {
     const { error } = companySchema.validate(req.body)
     if (!error) {
-        if (!req.files.logo && !req.files.documents) {
+        if (!req.files.logo || !req.files.documents) {
             return res.status(400).json({
                 success: false,
                 message: 'Please upload documents',
@@ -18,7 +18,9 @@ export const createCompany = async (req, res) => {
                 username: req.body.username,
             }).exec()
 
-            if (existingCompany) {
+            console.log(existingCompany)
+
+            if (existingCompany.length > 0) {
                 if (existingCompany.username === req.body.username) {
                     res.status(409).json({
                         success: false,
@@ -146,6 +148,7 @@ export const editCompany = async (req, res) => {
                 message: 'Company not found',
             })
         } else {
+            console.log(req.files)
             const newlogo = await uploadSingle(
                 req.file.path,
                 req.file.originalname,

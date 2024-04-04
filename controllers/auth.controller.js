@@ -5,6 +5,7 @@ import { comparePassword } from '../utils/bcryptPassword.js'
 export const loginCompany = async (req, res) => {
     try {
         const { email, password } = req.body
+
         const company = await Company.findOne({ email })
         if (!company) {
             return res.status(400).json({
@@ -33,7 +34,7 @@ export const loginCompany = async (req, res) => {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24,
         })
-        res.cookie('company', company.username, {
+        res.cookie('company_id', company._id, {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24,
         })
@@ -47,6 +48,7 @@ export const loginCompany = async (req, res) => {
 export const logoutCompany = async (req, res) => {
     try {
         res.clearCookie('token')
+        res.clearCookie('company_id')
         res.json({ success: true, message: 'Logged out successfully' })
     } catch (error) {
         console.log(error)

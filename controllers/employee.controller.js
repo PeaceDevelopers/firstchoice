@@ -11,6 +11,7 @@ export const createEmployee = async (req, res) => {
             nationality,
             eid_expiry,
             eid_no,
+            company_id,
         } = req.body
 
         const exists = await Employee.findOne({
@@ -32,6 +33,7 @@ export const createEmployee = async (req, res) => {
             }
 
             const employee = new Employee({
+                company_id,
                 name,
                 labor_card_expiry,
                 labor_card_no,

@@ -1,6 +1,10 @@
 import Joi from 'joi'
 
 const employeeSchema = Joi.object({
+    company_id: Joi.string().required().empty().messages({
+        'any.required': 'Company id is required',
+        'string.empty': 'Company id cannot be empty',
+    }),
     name: Joi.string().min(3).max(60).required().messages({
         'string.min': 'Name must be at least 3 characters long',
         'string.max': 'Name must be at most 60 characters long',

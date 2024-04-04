@@ -20,9 +20,14 @@ export const getTodayExpenses = async (req, res) => {
             })
 
         if (expenses.length > 0) {
+            let totalExpenses = 0
+            for (let i = 0; i < expenses.length; i++) {
+                totalExpenses += expenses[i].total
+            }
+
             return res.status(201).json({
                 success: true,
-                data: expenses.total,
+                data: totalExpenses,
             })
         } else {
             return res.status(404).json({

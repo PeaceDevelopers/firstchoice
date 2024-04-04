@@ -19,6 +19,7 @@ import {
     dailyRevenueCalculate,
     monthlyRevenueCalculate,
 } from './backgroundJobs/revenueJob.js'
+import { scheduleEmptyUploadFolderJob } from './backgroundJobs/EmptyUploadFolder.js'
 
 import dailyExpenseRoutes from './routes/dailyExpense.routes.js'
 import profitRoutes from './routes/profit.routes.js'
@@ -54,3 +55,4 @@ scheduleDailyExpenseJob()
 scheduleMonthlyExpenseJob()
 dailyRevenueCalculate()
 monthlyRevenueCalculate()
+scheduleEmptyUploadFolderJob()

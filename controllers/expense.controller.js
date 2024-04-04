@@ -13,9 +13,9 @@ export const createExpense = async (req, res) => {
             })
         }
 
-        const company = await Company.findById(req.body.company_id)
+        const company = await Company.findById(req.body.company_id).exec()
 
-        if (company.role == 'admin') {
+        if (!company || company.role == 'admin') {
             return res.status(400).json({
                 success: false,
                 message: 'Only admin can create expenses',

@@ -72,9 +72,7 @@ companyRoutes.post(
         { name: 'logo', maxCount: 1 },
         { name: 'documents', maxCount: 7 },
     ]),
-    fileErrorHandler,
-    checkHeader,
-    checkAdmin,
+fileErrorHandler,
     createCompany,
 )
 
