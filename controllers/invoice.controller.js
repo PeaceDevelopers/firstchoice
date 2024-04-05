@@ -54,7 +54,7 @@ export const generateInvoice = async (req, res) => {
             req.body.employees.forEach(async (employee) => {
                 const invoice_employee = {
                     invoice_id: newInvoice._id,
-                    employee_id: employee._id,
+                    employee_id: employee,
                 }
                 invoiceEmployeees = await Invoice_Employee.create(
                     invoice_employee,

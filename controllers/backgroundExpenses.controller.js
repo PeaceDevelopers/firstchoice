@@ -32,7 +32,7 @@ export const getTodayExpenses = async (req, res) => {
         } else {
             return res.status(404).json({
                 success: false,
-                message: 'No expenses found for today',
+                message: 'No expenses found',
             })
         }
     } catch (error) {

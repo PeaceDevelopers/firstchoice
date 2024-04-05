@@ -23,7 +23,7 @@ const invoiceEmployeeSchema = new mongoose.Schema(
                 'rejected',
                 'completed',
             ],
-            default: 'submitted',
+            default: 'waiting for payment',
             required: true,
         },
     },

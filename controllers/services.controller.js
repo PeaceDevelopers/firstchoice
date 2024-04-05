@@ -69,8 +69,6 @@ export const editService = async (req, res) => {
             })
         }
 
-        console.log(service)
-
         return res.status(201).json({
             success: true,
             data: service,
