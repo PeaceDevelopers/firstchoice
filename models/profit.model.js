@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const profitSchema = new mongoose.Schema(
     {
@@ -11,4 +11,5 @@ const profitSchema = new mongoose.Schema(
 )
 
 const Profit = mongoose.model('Profit', profitSchema)
-export default Profit
+
+module.exports = Profit

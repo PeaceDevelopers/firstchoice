@@ -1,32 +1,36 @@
-import express from 'express'
-import { configDotenv } from 'dotenv'
-import './database/config.js'
-import cors from 'cors'
-import router from './routes/auth.routes.js'
-import companyRoutes from './routes/company.routes.js'
-import employeeRoutes from './routes/employee.routes.js'
-import serviceRoutes from './routes/service.routes.js'
-import invoiceRoutes from './routes/invoice.routes.js'
-import expenseRoutes from './routes/expense.routes.js'
-import cookieParser from 'cookie-parser'
-import morgan from 'morgan'
-import { scheduleLastDayOfMonthJob } from './backgroundJobs/profitCalculate.js'
-import {
+const express = require('express')
+require('dotenv').config()
+require('./database/config.js')
+const cors = require('cors')
+const router = require('./routes/auth.routes')
+const companyRoutes = require('./routes/company.routes')
+const employeeRoutes = require('./routes/employee.routes')
+const serviceRoutes = require('./routes/service.routes')
+const invoiceRoutes = require('./routes/invoice.routes')
+const expenseRoutes = require('./routes/expense.routes')
+const cookieParser = require('cookie-parser')
+const morgan = require('morgan')
+const {
+    scheduleLastDayOfMonthJob,
+} = require('./backgroundJobs/profitCalculate')
+const {
     scheduleDailyExpenseJob,
     scheduleMonthlyExpenseJob,
-} from './backgroundJobs/dailyExpense.js'
-import {
+} = require('./backgroundJobs/dailyExpense')
+
+const {
     dailyRevenueCalculate,
     monthlyRevenueCalculate,
-} from './backgroundJobs/revenueJob.js'
-import { scheduleEmptyUploadFolderJob } from './backgroundJobs/EmptyUploadFolder.js'
+} = require('./backgroundJobs/revenueJob')
 
-import dailyExpenseRoutes from './routes/dailyExpense.routes.js'
-import profitRoutes from './routes/profit.routes.js'
-import RevenueRoutes from './routes/revenue.routes.js'
-import refworkRoutes from './routes/refwork.routes.js'
+const {
+    scheduleEmptyUploadFolderJob,
+} = require('./backgroundJobs/EmptyUploadFolder')
 
-configDotenv()
+const dailyExpenseRoutes = require('./routes/dailyExpense.routes')
+const profitRoutes = require('./routes/profit.routes')
+const RevenueRoutes = require('./routes/revenue.routes')
+const refworkRoutes = require('./routes/refwork.routes')
 
 const app = express()
 app.use(cors())

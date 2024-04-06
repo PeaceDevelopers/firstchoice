@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const refWorkSchema = new mongoose.Schema(
     {
@@ -20,4 +20,4 @@ const refWorkSchema = new mongoose.Schema(
 
 const RefWork = mongoose.model('RefWork', refWorkSchema)
 
-export default RefWork
+module.exports = RefWork

@@ -1,14 +1,14 @@
-import express from 'express'
+const express = require('express')
 const expenseRoutes = express.Router()
-import checkHeader from '../middlewares/checkHeader.js'
-import checkAdmin from '../middlewares/checkAdmin.js'
-import {
+const { checkHeader } = require('../middlewares/checkHeader')
+const checkAdmin = require('../middlewares/checkAdmin')
+const {
     getExpenses,
     createExpense,
     deleteExpense,
-} from '../controllers/expense.controller.js'
+} = require('../controllers/expense.controller')
 expenseRoutes.get('/', checkHeader, checkAdmin, getExpenses)
 expenseRoutes.post('/create-expense', checkHeader, checkAdmin, createExpense)
 expenseRoutes.delete('/:id', checkHeader, checkAdmin, deleteExpense)
 
-export default expenseRoutes
+module.exports = expenseRoutes

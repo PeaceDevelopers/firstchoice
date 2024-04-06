@@ -1,4 +1,4 @@
-import Joi from 'joi'
+const Joi = require('joi')
 
 const serviceSchema = Joi.object({
     name: Joi.string().min(3).max(60).empty().required().messages({
@@ -13,4 +13,4 @@ const serviceSchema = Joi.object({
     }),
 })
 
-export default serviceSchema
+module.exports = serviceSchema

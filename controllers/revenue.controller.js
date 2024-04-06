@@ -1,7 +1,7 @@
-import DailyRevenue from '../models/dailyRevenue.model.js'
-import MonthlyRevenue from '../models/monthlyRevenue.model.js'
+const DailyRevenue = require('../models/dailyRevenue.model')
+const MonthlyRevenue = require('../models/monthlyRevenue.model')
 
-export const getTodayRevenue = async (req, res) => {
+const getTodayRevenue = async (req, res) => {
     try {
         const today = new Date()
         const todayRevenue = await DailyRevenue.find({
@@ -23,7 +23,7 @@ export const getTodayRevenue = async (req, res) => {
     }
 }
 
-export const getMonthlyRevenue = async (req, res) => {
+const getMonthlyRevenue = async (req, res) => {
     try {
         const today = new Date()
         const thisMonthRevenue = await MonthlyRevenue.find({
@@ -41,3 +41,5 @@ export const getMonthlyRevenue = async (req, res) => {
         return res.status(500).json({ success: false, message: error.message })
     }
 }
+
+module.exports = { getTodayRevenue, getMonthlyRevenue }

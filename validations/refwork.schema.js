@@ -1,5 +1,4 @@
-import Joi from 'joi'
-
+const Joi = require('joi')
 const refworkSchema = Joi.object({
     name: Joi.string().min(3).max(60).empty().required().messages({
         'string.min': 'Name must be at least 3 characters long',
@@ -19,4 +18,4 @@ const refworkSchema = Joi.object({
     }),
 })
 
-export default refworkSchema
+module.exports = refworkSchema

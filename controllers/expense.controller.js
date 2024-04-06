@@ -1,9 +1,10 @@
-import Expense from '../models/expense.model.js'
-import expenseSchema from '../validations/expense.schema.js'
-import Company from '../models/company.model.js'
-import DailyExpense from '../models/dailyExpense.model.js'
+const Expense = require('../models/expense.model')
 
-export const createExpense = async (req, res) => {
+const expenseSchema = require('../validations/expense.schema')
+const Company = require('../models/company.model')
+const DailyExpense = require('../models/dailyExpense.model')
+
+const createExpense = async (req, res) => {
     try {
         const { error } = expenseSchema.validate(req.body)
         if (error) {
@@ -56,7 +57,7 @@ export const createExpense = async (req, res) => {
     }
 }
 
-export const getExpenses = async (req, res) => {
+const getExpenses = async (req, res) => {
     try {
         const expenses = await Expense.find()
         res.status(201).json({
@@ -69,7 +70,7 @@ export const getExpenses = async (req, res) => {
     }
 }
 
-export const deleteExpense = async (req, res) => {
+const deleteExpense = async (req, res) => {
     try {
         const expense = await Expense.findByIdAndDelete(req.params.id)
         res.status(201).json({
@@ -80,4 +81,10 @@ export const deleteExpense = async (req, res) => {
         console.log(error)
         res.status(500).json({ success: false, message: error.message })
     }
+}
+
+module.exports = {
+    createExpense,
+    getExpenses,
+    deleteExpense,
 }

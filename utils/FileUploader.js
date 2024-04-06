@@ -1,11 +1,11 @@
-import { Storage } from '@google-cloud/storage'
+const { Storage } = require('@google-cloud/storage')
 
 const storage = new Storage({
     projectId: 'firstchoice-418310',
     keyFilename: 'service-key.json',
 })
 
-export const uploadSingle = async (filePath, fileName) => {
+const uploadSingle = async (filePath, fileName) => {
     try {
         const gc = storage.bucket('firstchoicemanagement')
         const storagePath = `${fileName}`
@@ -27,7 +27,7 @@ export const uploadSingle = async (filePath, fileName) => {
     }
 }
 
-export const deleteFile = async (fileName) => {
+const deleteFile = async (fileName) => {
     try {
         const gc = storage.bucket('firstchoicemanagement')
         const storagePath = `${fileName}`
@@ -39,3 +39,5 @@ export const deleteFile = async (fileName) => {
         throw new Error(error.message)
     }
 }
+
+module.exports = { uploadSingle, deleteFile }

@@ -1,6 +1,6 @@
-import Profit from '../models/profit.model.js'
+const Profit = require('../models/profit.model')
 
-export const getThisMonthProfit = async (req, res) => {
+const getThisMonthProfit = async (req, res) => {
     try {
         const profit = await Profit.find({
             createdAt: {
@@ -19,3 +19,5 @@ export const getThisMonthProfit = async (req, res) => {
         res.status(500).json({ success: false, message: error.message })
     }
 }
+
+module.exports = { getThisMonthProfit }

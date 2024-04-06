@@ -1,18 +1,18 @@
-import express from 'express'
-import multer from 'multer'
+const express = require('express')
+const multer = require('multer')
 const employeeRoutes = express.Router()
 
-import {
+const {
     createEmployee,
     getEmployee,
     editEmployee,
     deleteEmployeeFile,
     deleteEmployee,
     getAllEmployees,
-} from '../controllers/employee.controller.js'
+} = require('../controllers/employee.controller')
 
-import checkHeader from '../middlewares/checkHeader.js'
-import checkAdmin from '../middlewares/checkAdmin.js'
+const { checkHeader } = require('../middlewares/checkHeader')
+const checkAdmin = require('../middlewares/checkAdmin')
 
 const upload = multer({
     dest: (req, file, cb) => {
@@ -97,4 +97,4 @@ employeeRoutes.delete(
     deleteEmployee,
 )
 
-export default employeeRoutes
+module.exports = employeeRoutes

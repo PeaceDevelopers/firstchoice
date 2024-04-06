@@ -1,8 +1,8 @@
-import Employee from '../models/employee.model.js'
-import { uploadSingle, deleteFile } from '../utils/FileUploader.js'
-import fs from 'fs/promises'
+const Employee = require('../models/employee.model')
+const { uploadSingle, deleteFile } = require('../utils/FileUploader')
+const fs = require('fs/promises')
 
-export const createEmployee = async (req, res) => {
+const createEmployee = async (req, res) => {
     try {
         const {
             name,
@@ -63,7 +63,7 @@ export const createEmployee = async (req, res) => {
     }
 }
 
-export const getEmployee = async (req, res) => {
+const getEmployee = async (req, res) => {
     try {
         const employee = await Employee.findById(req.params.id)
         if (!employee) {
@@ -86,7 +86,7 @@ export const getEmployee = async (req, res) => {
     }
 }
 
-export const editEmployee = async (req, res) => {
+const editEmployee = async (req, res) => {
     try {
         const employee = await Employee.findById(req.params.id)
         if (!employee) {
@@ -133,7 +133,7 @@ export const editEmployee = async (req, res) => {
     }
 }
 
-export const deleteEmployeeFile = async (req, res) => {
+const deleteEmployeeFile = async (req, res) => {
     try {
         const fileIndex = req.body.document
         const employee = await Employee.findById(req.body.employee_id)
@@ -172,7 +172,7 @@ export const deleteEmployeeFile = async (req, res) => {
     }
 }
 
-export const deleteEmployee = async (req, res) => {
+const deleteEmployee = async (req, res) => {
     try {
         const employee = await Employee.findById(req.params.id)
         if (!employee) {
@@ -203,7 +203,7 @@ export const deleteEmployee = async (req, res) => {
     }
 }
 
-export const getAllEmployees = async (req, res) => {
+const getAllEmployees = async (req, res) => {
     try {
         const employees = await Employee.find()
         res.status(201).json({
@@ -214,4 +214,13 @@ export const getAllEmployees = async (req, res) => {
         console.log(error)
         res.status(500).json({ success: false, message: error.message })
     }
+}
+
+module.exports = {
+    createEmployee,
+    getEmployee,
+    editEmployee,
+    deleteEmployee,
+    getAllEmployees,
+    deleteEmployeeFile,
 }

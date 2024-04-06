@@ -1,14 +1,14 @@
-import express from 'express'
+const express = require('express')
 const invoiceRoutes = express.Router()
-import checkHeader from '../middlewares/checkHeader.js'
-import checkAdmin from '../middlewares/checkAdmin.js'
-import {
+const { checkHeader } = require('../middlewares/checkHeader')
+const checkAdmin = require('../middlewares/checkAdmin')
+const {
     getAllInvoices,
     generateInvoice,
     deleteInvoice,
     getEmployeeInvoices,
     updateEmployeeInvoiceStatus,
-} from '../controllers/invoice.controller.js'
+} = require('../controllers/invoice.controller')
 
 invoiceRoutes.get('/', checkHeader, checkAdmin, getAllInvoices)
 invoiceRoutes.post(
@@ -26,4 +26,4 @@ invoiceRoutes.put(
     updateEmployeeInvoiceStatus,
 )
 
-export default invoiceRoutes
+module.exports = invoiceRoutes

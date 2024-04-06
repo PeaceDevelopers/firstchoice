@@ -1,4 +1,4 @@
-import Company from '../models/company.model.js'
+const Company = require('../models/company.model')
 const checkAdmin = async (req, res, next) => {
     try {
         const company = req.cookies.company_id
@@ -27,4 +27,4 @@ const checkAdmin = async (req, res, next) => {
     }
 }
 
-export default checkAdmin
+module.exports = checkAdmin

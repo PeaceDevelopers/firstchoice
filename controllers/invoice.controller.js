@@ -1,8 +1,8 @@
-import Invoice from '../models/invoice.model.js'
-import Invoice_Employee from '../models/Invoice_Employee.model.js'
-import invoiceSchema from '../validations/invoice.schema.js'
+const Invoice = require('../models/invoice.model')
+const Invoice_Employee = require('../models/Invoice_Employee.model')
+const invoiceSchema = require('../validations/invoice.schema')
 
-export const getAllInvoices = async (req, res) => {
+const getAllInvoices = async (req, res) => {
     try {
         const invoices = await Invoice.find()
         res.status(201).json({
@@ -15,7 +15,7 @@ export const getAllInvoices = async (req, res) => {
     }
 }
 
-export const generateInvoice = async (req, res) => {
+const generateInvoice = async (req, res) => {
     try {
         const { error } = invoiceSchema.validate(req.body)
         if (error) {
@@ -75,7 +75,7 @@ export const generateInvoice = async (req, res) => {
     }
 }
 
-export const deleteInvoice = async (req, res) => {
+const deleteInvoice = async (req, res) => {
     try {
         const invoiceId = req.params.id
         const invoice = Invoice.findById(invoiceId)
@@ -103,7 +103,7 @@ export const deleteInvoice = async (req, res) => {
     }
 }
 
-export const getEmployeeInvoices = async (req, res) => {
+const getEmployeeInvoices = async (req, res) => {
     try {
         const invoices = await Invoice_Employee.find({
             invoice_id: req.params.id,
@@ -118,7 +118,7 @@ export const getEmployeeInvoices = async (req, res) => {
     }
 }
 
-export const updateEmployeeInvoiceStatus = async (req, res) => {
+const updateEmployeeInvoiceStatus = async (req, res) => {
     try {
         const { invoice_id, employee_id } = req.params
         const status = req.body.status
@@ -145,4 +145,12 @@ export const updateEmployeeInvoiceStatus = async (req, res) => {
         console.log(error)
         res.status(500).json({ success: false, message: error.message })
     }
+}
+
+module.exports = {
+    getAllInvoices,
+    generateInvoice,
+    deleteInvoice,
+    getEmployeeInvoices,
+    updateEmployeeInvoiceStatus,
 }

@@ -1,8 +1,8 @@
-import cron from 'node-cron'
-import fs from 'fs'
-import path from 'path'
+const cron = require('node-cron')
+const fs = require('fs')
+const path = require('path')
 
-export const scheduleEmptyUploadFolderJob = () => {
+const scheduleEmptyUploadFolderJob = () => {
     cron.schedule('0 0 * * *', async () => {
         try {
             const directoryPath = 'uploads'
@@ -19,3 +19,5 @@ export const scheduleEmptyUploadFolderJob = () => {
         }
     })
 }
+
+module.exports = { scheduleEmptyUploadFolderJob }

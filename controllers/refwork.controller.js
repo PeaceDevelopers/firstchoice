@@ -1,7 +1,7 @@
-import RefWork from '../models/RefWork.model.js'
-import refWorkSchema from '../validations/refwork.schema.js'
+const RefWork = require('../models/RefWork.model')
+const refWorkSchema = require('../validations/refwork.schema')
 
-export const createRefWork = async (req, res) => {
+const createRefWork = async (req, res) => {
     try {
         const { error } = refWorkSchema.validate(req.body)
 
@@ -27,7 +27,7 @@ export const createRefWork = async (req, res) => {
     }
 }
 
-export const deleteRefWork = async (req, res) => {
+const deleteRefWork = async (req, res) => {
     try {
         const refWork = await RefWork.findByIdAndDelete(req.params.id)
 
@@ -46,4 +46,9 @@ export const deleteRefWork = async (req, res) => {
         console.log(error)
         res.status(500).json({ success: false, message: error.message })
     }
+}
+
+module.exports = {
+    createRefWork,
+    deleteRefWork,
 }

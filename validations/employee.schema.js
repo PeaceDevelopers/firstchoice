@@ -1,4 +1,4 @@
-import Joi from 'joi'
+const Joi = require('joi')
 
 const employeeSchema = Joi.object({
     company_id: Joi.string().required().empty().messages({
@@ -33,4 +33,4 @@ const employeeSchema = Joi.object({
     }),
 })
 
-export default employeeSchema
+module.exports = employeeSchema

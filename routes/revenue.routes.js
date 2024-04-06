@@ -1,14 +1,14 @@
-import express from 'express'
+const express = require('express')
 const RevenueRoutes = express.Router()
-import checkHeader from '../middlewares/checkHeader.js'
-import checkCEO from '../middlewares/checkCEO.js'
+const { checkHeader } = require('../middlewares/checkHeader')
+const { checkCEO } = require('../middlewares/checkCEO')
 
-import {
+const {
     getTodayRevenue,
     getMonthlyRevenue,
-} from '../controllers/revenue.controller.js'
+} = require('../controllers/revenue.controller')
 
 RevenueRoutes.get('/', checkHeader, checkCEO, getTodayRevenue)
 RevenueRoutes.get('/monthly', checkHeader, checkCEO, getMonthlyRevenue)
 
-export default RevenueRoutes
+module.exports = RevenueRoutes

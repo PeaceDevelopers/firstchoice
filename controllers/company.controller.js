@@ -1,10 +1,10 @@
-import Company from '../models/company.model.js'
-import { uploadSingle, deleteFile } from '../utils/FileUploader.js'
-import { hashPassword } from '../utils/bcryptPassword.js'
-import fs from 'fs/promises'
-import companySchema from '../validations/company.schema.js'
+const Company = require('../models/company.model')
+const { uploadSingle, deleteFile } = require('../utils/FileUploader')
+const { hashPassword } = require('../utils/bcryptPassword')
+const fs = require('fs/promises')
+const companySchema = require('../validations/company.schema')
 
-export const createCompany = async (req, res) => {
+const createCompany = async (req, res) => {
     const { error } = companySchema.validate(req.body)
     if (!error) {
         if (!req.files.logo || !req.files.documents) {
@@ -96,7 +96,7 @@ export const createCompany = async (req, res) => {
     }
 }
 
-export const getCompany = async (req, res) => {
+const getCompany = async (req, res) => {
     try {
         const company = await Company.findById(req.params.id).select(
             '-password',
@@ -119,7 +119,7 @@ export const getCompany = async (req, res) => {
     }
 }
 
-export const getCompanies = async (req, res) => {
+const getCompanies = async (req, res) => {
     try {
         const companies = await Company.find().select('-password')
         if (companies.length === 0) {
@@ -139,7 +139,7 @@ export const getCompanies = async (req, res) => {
     }
 }
 
-export const editCompany = async (req, res) => {
+const editCompany = async (req, res) => {
     try {
         const company = await Company.findById(req.params.id)
         if (!company) {
@@ -190,7 +190,7 @@ export const editCompany = async (req, res) => {
     }
 }
 
-export const deleteCompany = async (req, res) => {
+const deleteCompany = async (req, res) => {
     try {
         const company = await Company.findById(req.params.id)
         if (!company) {
@@ -226,7 +226,7 @@ export const deleteCompany = async (req, res) => {
     }
 }
 
-export const getEmployeesOfCompany = async (req, res) => {
+const getEmployeesOfCompany = async (req, res) => {
     try {
         const employees = await Employee.find({ company: req.params.company })
         res.status(201).json({
@@ -237,4 +237,13 @@ export const getEmployeesOfCompany = async (req, res) => {
         console.log(error)
         res.status(500).json({ success: false, message: error.message })
     }
+}
+
+module.exports = {
+    createCompany,
+    getCompany,
+    getCompanies,
+    editCompany,
+    deleteCompany,
+    getEmployeesOfCompany,
 }

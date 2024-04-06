@@ -1,8 +1,8 @@
-import Company from '../models/company.model.js'
-import generateToken from './generateToken.js'
-import { comparePassword } from '../utils/bcryptPassword.js'
+const Company = require('../models/company.model')
+const generateToken = require('./generateToken')
+const { comparePassword } = require('../utils/bcryptPassword')
 
-export const loginCompany = async (req, res) => {
+const loginCompany = async (req, res) => {
     try {
         const { email, password } = req.body
 
@@ -45,7 +45,7 @@ export const loginCompany = async (req, res) => {
     }
 }
 
-export const logoutCompany = async (req, res) => {
+const logoutCompany = async (req, res) => {
     try {
         res.clearCookie('token')
         res.clearCookie('company_id')
@@ -55,3 +55,5 @@ export const logoutCompany = async (req, res) => {
         res.json({ success: false, message: 'Something went wrong' })
     }
 }
+
+module.exports = { loginCompany, logoutCompany }

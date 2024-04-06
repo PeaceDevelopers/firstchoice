@@ -1,7 +1,7 @@
-import cron from 'node-cron'
-import Profit from '../models/profit.model.js'
-import Invoice from '../models/invoice.model.js'
-import Service from '../models/service.model.js'
+const cron = require('node-cron')
+const Profit = require('../models/profit.model')
+const Invoice = require('../models/invoice.model')
+const Service = require('../models/service.model')
 
 const calculateProfit = async () => {
     try {
@@ -46,7 +46,7 @@ const calculateProfit = async () => {
     }
 }
 
-export const scheduleLastDayOfMonthJob = () => {
+const scheduleLastDayOfMonthJob = () => {
     cron.schedule('30 23 28-31 * *', async () => {
         try {
             const today = new Date()
@@ -63,4 +63,8 @@ export const scheduleLastDayOfMonthJob = () => {
             console.error('Error running last day of month job:', error)
         }
     })
+}
+
+module.exports = {
+    scheduleLastDayOfMonthJob,
 }

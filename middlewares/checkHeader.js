@@ -11,4 +11,4 @@ const checkHeader = (req, res, next) => {
         console.log(error)
     }
 }
-export default checkHeader
+module.exports = { checkHeader }

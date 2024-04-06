@@ -1,7 +1,7 @@
-import DailyExpense from '../models/dailyExpense.model.js'
-import MonthlyExpense from '../models/monthlyExpense.model.js'
+const DailyExpense = require('../models/dailyExpense.model')
+const MonthlyExpense = require('../models/monthlyExpense.model')
 
-export const getTodayExpenses = async (req, res) => {
+const getTodayExpenses = async (req, res) => {
     try {
         const today = new Date()
         const expenses = await DailyExpense.find({
@@ -41,7 +41,7 @@ export const getTodayExpenses = async (req, res) => {
     }
 }
 
-export const getMonthlyExpenses = async (req, res) => {
+const getMonthlyExpenses = async (req, res) => {
     try {
         const expenses = await MonthlyExpense.find({
             createdAt: {
@@ -61,4 +61,9 @@ export const getMonthlyExpenses = async (req, res) => {
         console.log(error)
         res.status(500).json({ success: false, message: error.message })
     }
+}
+
+module.exports = {
+    getTodayExpenses,
+    getMonthlyExpenses,
 }

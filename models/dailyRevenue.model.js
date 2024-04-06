@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const dailyRevenueSchema = new mongoose.Schema(
     {
@@ -12,4 +12,4 @@ const dailyRevenueSchema = new mongoose.Schema(
 
 const DailyRevenue = mongoose.model('DailyRevenue', dailyRevenueSchema)
 
-export default DailyRevenue
+module.exports = DailyRevenue

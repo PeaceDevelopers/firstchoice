@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const monthlyExpenseSchema = new mongoose.Schema(
     {
@@ -11,4 +11,5 @@ const monthlyExpenseSchema = new mongoose.Schema(
 )
 
 const MonthlyExpense = mongoose.model('MonthlyExpense', monthlyExpenseSchema)
-export default MonthlyExpense
+
+module.exports = MonthlyExpense

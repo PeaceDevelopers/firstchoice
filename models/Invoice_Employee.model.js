@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const invoiceEmployeeSchema = new mongoose.Schema(
     {
@@ -35,4 +35,4 @@ const Invoice_Employee = mongoose.model(
     invoiceEmployeeSchema,
 )
 
-export default Invoice_Employee
+module.exports = Invoice_Employee

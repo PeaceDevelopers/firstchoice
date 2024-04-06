@@ -1,9 +1,9 @@
-import DailyRevenue from '../models/dailyRevenue.model.js'
-import MonthlyRevenue from '../models/monthlyRevenue.model.js'
-import Invoice from '../models/invoice.model.js'
-import cron from 'node-cron'
+const DailyRevenue = require('../models/dailyRevenue.model')
+const MonthlyRevenue = require('../models/monthlyRevenue.model')
+const Invoice = require('../models/invoice.model')
+const cron = require('node-cron')
 
-export const dailyRevenueCalculate = () => {
+const dailyRevenueCalculate = () => {
     cron.schedule('0 0 * * *', async () => {
         try {
             const today = new Date()
@@ -53,7 +53,7 @@ export const dailyRevenueCalculate = () => {
     })
 }
 
-export const monthlyRevenueCalculate = () => {
+const monthlyRevenueCalculate = () => {
     cron.schedule('0 0 1 * *', async () => {
         try {
             const today = new Date()
@@ -93,4 +93,9 @@ export const monthlyRevenueCalculate = () => {
             console.log(error.message)
         }
     })
+}
+
+module.exports = {
+    dailyRevenueCalculate,
+    monthlyRevenueCalculate,
 }

@@ -1,4 +1,4 @@
-import Joi from 'joi'
+const Joi = require('joi')
 
 const invoiceSchema = Joi.object({
     service_id: Joi.string().empty().required().messages({
@@ -32,4 +32,4 @@ const invoiceSchema = Joi.object({
     }),
 })
 
-export default invoiceSchema
+module.exports = invoiceSchema

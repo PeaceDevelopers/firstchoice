@@ -1,15 +1,15 @@
-import express from 'express'
+const express = require('express')
 const refworkRoutes = express.Router()
 
-import {
+const {
     createRefWork,
     deleteRefWork,
-} from '../controllers/refwork.controller.js'
+} = require('../controllers/refwork.controller')
 
-import checkAdmin from '../middlewares/checkAdmin.js'
-import checkHeader from '../middlewares/checkHeader.js'
+const checkAdmin = require('../middlewares/checkAdmin')
+const { checkHeader } = require('../middlewares/checkHeader')
 
 refworkRoutes.post('/create-refwork', checkHeader, checkAdmin, createRefWork)
 refworkRoutes.delete('/:id', checkHeader, checkAdmin, deleteRefWork)
 
-export default refworkRoutes
+module.exports = refworkRoutes

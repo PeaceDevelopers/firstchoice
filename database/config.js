@@ -1,7 +1,6 @@
-import mongoose from 'mongoose'
-import { configDotenv } from 'dotenv'
+const mongoose = require('mongoose')
 
-configDotenv()
+require('dotenv').config()
 
 mongoose.connect(process.env.MONGO_URL).catch((err) => {
     console.log(err)

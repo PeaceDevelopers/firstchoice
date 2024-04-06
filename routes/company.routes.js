@@ -1,19 +1,18 @@
-import express from 'express'
-
+const express = require('express')
 const companyRoutes = express.Router()
-import checkAdmin from '../middlewares/checkAdmin.js'
-import checkHeader from '../middlewares/checkHeader.js'
+const checkAdmin = require('../middlewares/checkAdmin')
+const { checkHeader } = require('../middlewares/checkHeader')
 
-import multer from 'multer'
+const multer = require('multer')
 
-import {
+const {
     createCompany,
     editCompany,
     getCompany,
     getCompanies,
     deleteCompany,
     getEmployeesOfCompany,
-} from '../controllers/company.controller.js'
+} = require('../controllers/company.controller')
 
 const upload = multer({
     dest: (req, file, cb) => {
@@ -72,7 +71,7 @@ companyRoutes.post(
         { name: 'logo', maxCount: 1 },
         { name: 'documents', maxCount: 7 },
     ]),
-fileErrorHandler,
+    fileErrorHandler,
     createCompany,
 )
 
@@ -89,4 +88,4 @@ companyRoutes.get('/companies', checkHeader, checkAdmin, getCompanies)
 companyRoutes.delete('/:id', checkHeader, deleteCompany)
 companyRoutes.get('/:id/employees', checkHeader, getEmployeesOfCompany)
 
-export default companyRoutes
+module.exports = companyRoutes

@@ -1,7 +1,7 @@
-import Service from '../models/service.model.js'
-import serviceSchema from '../validations/service.schema.js'
+const Service = require('../models/service.model')
+const serviceSchema = require('../validations/service.schema')
 
-export const getCompanies = async (req, res) => {
+const getCompanies = async (req, res) => {
     try {
         const services = await Service.find()
         res.status(201).json({
@@ -14,7 +14,7 @@ export const getCompanies = async (req, res) => {
     }
 }
 
-export const createService = async (req, res) => {
+const createService = async (req, res) => {
     try {
         const { error } = serviceSchema.validate(req.body)
         if (error) {
@@ -46,7 +46,7 @@ export const createService = async (req, res) => {
     }
 }
 
-export const editService = async (req, res) => {
+const editService = async (req, res) => {
     try {
         const id = req.params.id
         const service = await Service.findByIdAndUpdate(
@@ -81,7 +81,7 @@ export const editService = async (req, res) => {
     }
 }
 
-export const deleteService = async (req, res) => {
+const deleteService = async (req, res) => {
     try {
         const serviceId = req.params.id
         const service = Service.findByIdAndDelete(serviceId)
@@ -103,4 +103,11 @@ export const deleteService = async (req, res) => {
             message: error.message,
         })
     }
+}
+
+module.exports = {
+    getCompanies,
+    createService,
+    editService,
+    deleteService,
 }

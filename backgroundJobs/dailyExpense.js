@@ -1,7 +1,7 @@
-import cron from 'node-cron'
-import DailyExpense from '../models/dailyExpense.model.js'
-import MonthlyExpense from '../models/monthlyExpense.model.js'
-export const scheduleDailyExpenseJob = () => {
+const cron = require('node-cron')
+const DailyExpense = require('../models/dailyExpense.model')
+const MonthlyExpense = require('../models/monthlyExpense.model')
+const scheduleDailyExpenseJob = () => {
     cron.schedule('0 0 * * *', async () => {
         try {
             const today = new Date()
@@ -30,7 +30,7 @@ export const scheduleDailyExpenseJob = () => {
     })
 }
 
-export const scheduleMonthlyExpenseJob = () => {
+const scheduleMonthlyExpenseJob = () => {
     cron.schedule('0 0 1 * *', async () => {
         try {
             const currentMonth = new Date().getMonth()
@@ -57,4 +57,9 @@ export const scheduleMonthlyExpenseJob = () => {
             console.error('Error running monthly expense job:', error)
         }
     })
+}
+
+module.exports = {
+    scheduleDailyExpenseJob,
+    scheduleMonthlyExpenseJob,
 }

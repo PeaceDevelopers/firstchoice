@@ -1,4 +1,4 @@
-import Joi from 'joi'
+const Joi = require('joi')
 
 const expenseSchema = Joi.object({
     name: Joi.string().min(2).max(100).empty().required().messages({
@@ -27,4 +27,4 @@ const expenseSchema = Joi.object({
     }),
 })
 
-export default expenseSchema
+module.exports = expenseSchema
