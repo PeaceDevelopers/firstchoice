@@ -1,9 +1,9 @@
 const Service = require('../models/service.model')
 const serviceSchema = require('../validations/service.schema')
 
-const getCompanies = async (req, res) => {
+const getServices = async (req, res) => {
     try {
-        const services = await Service.find()
+        const services = await Service.find().exec()
         res.status(201).json({
             success: true,
             data: services,
@@ -106,7 +106,7 @@ const deleteService = async (req, res) => {
 }
 
 module.exports = {
-    getCompanies,
+    getServices,
     createService,
     editService,
     deleteService,

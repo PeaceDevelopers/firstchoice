@@ -22,6 +22,7 @@ const companySchema = new mongoose.Schema(
             unique: true,
             minlength: 3,
             maxlength: 60,
+            index: true,
         },
         phone: {
             type: String,

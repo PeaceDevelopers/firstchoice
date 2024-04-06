@@ -5,12 +5,12 @@ const {
     createService,
     editService,
     deleteService,
-    getCompanies,
+    getServices,
 } = require('../controllers/services.controller')
 const { checkHeader } = require('../middlewares/checkHeader')
 const checkAdmin = require('../middlewares/checkAdmin')
 
-serviceRoutes.get('/', getCompanies)
+serviceRoutes.get('/', checkHeader, checkAdmin, getServices)
 serviceRoutes.post('/service', checkHeader, checkAdmin, createService)
 serviceRoutes.put('/service/:id', checkHeader, checkAdmin, editService)
 serviceRoutes.delete('/:id', checkHeader, checkAdmin, deleteService)
