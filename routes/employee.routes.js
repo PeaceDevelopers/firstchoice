@@ -85,7 +85,6 @@ employeeRoutes.put(
 
 employeeRoutes.delete(
     '/delete-file/',
-    upload.none(),
     checkHeader,
     checkAdmin,
     deleteEmployeeFile,

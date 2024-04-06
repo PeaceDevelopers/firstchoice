@@ -29,7 +29,7 @@ export const createEmployee = async (req, res) => {
                     documents[i].originalname,
                 )
                 documents_url.push(url)
-                fs.unlink(documents[i].path)
+                await fs.unlink(documents[i].path)
             }
 
             const employee = new Employee({
@@ -96,7 +96,34 @@ export const editEmployee = async (req, res) => {
             })
         }
 
-        await Employee.findByIdAndUpdate(req.params.id, req.body)
+        if (req.files) {
+            const documents = req.files
+
+            for (let i = 0; i < documents.length; i++) {
+                const url = await uploadSingle(
+                    documents[i].path,
+                    documents[i].originalname,
+                )
+                employee.documents.push(url)
+                fs.unlink(documents[i].path)
+            }
+        }
+
+        await Employee.findByIdAndUpdate(req.params.id, {
+            name: req.body.name,
+            labor_card_expiry: req.body.labor_card_expiry,
+            labor_card_no: req.body.labor_card_no,
+            nationality: req.body.nationality,
+            eid_expiry: req.body.eid_expiry,
+            eid_no: req.body.eid_no,
+            documents: employee.documents,
+        })
+
+        return res.status(200).json({
+            success: true,
+            message: 'Employee updated successfully',
+            data: employee,
+        })
     } catch (error) {
         console.log(error)
         return res.status(500).json({
